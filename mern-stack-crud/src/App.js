@@ -9,10 +9,18 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./App.css"
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+import StudentForm from "./components/StudentForm";
 import CreateStudent from "./components/create-student.component";
 
 import EditStudent from "./components/edit-student.component";
 import StudentList from "./components/student-list.component";
+
+const checkApp = () => {
+  return (
+    console.log("Checking for Backend from React App")
+  );
+}
 
 
 // App Component
@@ -56,7 +64,7 @@ const App = () => {
             <Col md={12}>
               <div className="wrapper">
                 <Routes>
-                  <Route exact path="/" element={<CreateStudent />} />
+                  <Route exact path="/" element={<StudentForm />} />
                   <Route path="/create-student" element={<CreateStudent />} />
                   <Route path="/edit-student/:id" element={<EditStudent />} />
                   <Route path="/student-list" element={<StudentList />} />

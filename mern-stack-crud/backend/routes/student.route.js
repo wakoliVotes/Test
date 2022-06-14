@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // Student Model
-const studentSchema = require("../models/Student");
+const studentSchema = require("../models/Student", console.log("Checking for Backend from Express Routes"));
 
 // CREATE Student
 router.post("/create-student", (req, res, next) => {

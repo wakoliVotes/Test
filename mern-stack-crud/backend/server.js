@@ -8,7 +8,8 @@ let dbConfig = require('./database/db');
 
 // Express Route
 
-const studentRoute = require('../backend/routes/student.route');
+const studentRoute = require('../backend/routes/student.route', 
+console.log("Checking for Backend from Express Server.js "));
 // Configure mongodb database
 /*
 mongoose.set('useNewUrlParser', true);
