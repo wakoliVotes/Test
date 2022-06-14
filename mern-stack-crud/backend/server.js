@@ -4,6 +4,8 @@ let cors = require('cors');
 let bodyParser = require('body-parser');
 let dbConfig = require('./database/db');
 
+
+
 // Express Route
 
 const studentRoute = require('../backend/routes/student.route');
@@ -28,6 +30,8 @@ error => {
 const app = express()
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(express.json());
 
 app.use(cors());
 app.use('/students', studentRoute)
