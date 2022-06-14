@@ -13,9 +13,9 @@ app.use(express.json());
 
 //_------------------ APIS--------------- //
 app.use("/create_student", createStudent);
-app.use("/get_student", getStudent);
-app.use("/update_student", updateStudent);
-app.use("/delete_student", deleteStudent);
+app.use("/get_student/:id", getStudent);
+app.use("/update_student/:id", updateStudent);
+app.use("/delete_student/:id", deleteStudent);
 
 // -------------------APIS----------------/
 // PORT
