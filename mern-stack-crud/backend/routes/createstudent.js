@@ -6,7 +6,7 @@ Router.post("/", async (req, res) => {
   const { email, rollno, name } = req.body;
   const user = Student.findOne({ email });
   if (user) {
-    res.status(200).json({ errorMessage: "student already exist" });
+    res.status(500).json({ errorMessage: "student already exist" });
     return;
   }
   user = new Student({
