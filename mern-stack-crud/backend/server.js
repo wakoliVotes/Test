@@ -1,57 +1,26 @@
-let express = require('express');
-let mongoose = require('mongoose');
-let cors = require('cors');
-let bodyParser = require('body-parser');
-let dbConfig = require('./database/db');
+const express = require("express");
+const createStudent = require("./routes/createstudent");
+const getStudent = require("./routes/getstudent");
+const updateStudent = require("./routes/updatestudent");
+const deleteStudent = require("./routes/deletestudent");
+const connectdb = require("./utils/connectdb");
+const bodyParser = require('body-parser')
 
-
-
-// Express Route
-
-const studentRoute = require('../backend/routes/student.route', 
-console.log("Checking for Backend from Express Server.js "));
-// Configure mongodb database
-/*
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
-mongoose.set('useUnifiedTopology', true);
-*/
-
-// Connecting MongoDB Database
-mongoose.Promise = global.Promise;
-mongoose.connect(dbConfig.db).then(() => {
-    console.log("Database successfully connected !")
-}, 
-error => {
-    console.log("Could not connect to database : " + error)
-}
-)
-
-const app = express()
+const app = express();
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(cors());
-app.use('/students', studentRoute)
+//_------------------ APIS--------------- //
+app.use("/create_student", createStudent);
+app.use("/get_student", getStudent);
+app.use("/update_student", updateStudent);
+app.use("/delete_student", deleteStudent);
 
-// PORT 
+// -------------------APIS----------------/
+// PORT
 const port = 4000;
-const server = app.listen(port, () => {
-    console.log("Connected to port " + port)
-})
-
-
-
-// 404 Error
-app.use((req, res, next) => {
-    res.status(404).send("Error 404!")
-});
-
-app.use(function (err, req, res, next) {
-    console.log(err.message);
-    if(!err.statusCode) err.statusCode = 500;
-    res.status(err, statusCode).send(err.message);
+app.listen(port, async () => {
+  console.log(`server is running at http://localhost:${port}`)
+  await connectdb();
 });
