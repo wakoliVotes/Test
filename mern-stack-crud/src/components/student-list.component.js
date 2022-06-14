@@ -12,7 +12,7 @@ const StudentList = () => {
 
     useEffect(() => {
         axios
-        .get('http://localhost:3000/students/students/')
+        .get('http://localhost:4000/students/students/')
         .then(({ data }) => {
             setStudents(data);
         })
